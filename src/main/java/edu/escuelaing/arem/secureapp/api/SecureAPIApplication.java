@@ -55,7 +55,6 @@ public class SecureAPIApplication {
 
             restTemplate.setRequestFactory(requestFactory);
         } catch (Exception exception) {
-            System.out.println("Exception Occured while creating restTemplate "+exception);
             exception.printStackTrace();
         }
         return restTemplate;
