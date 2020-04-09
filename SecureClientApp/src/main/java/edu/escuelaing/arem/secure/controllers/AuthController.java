@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.escuelaing.arem.secure.model.User;
+import edu.escuelaing.arem.secure.services.UserServices;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -22,12 +24,18 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RestController
 @RequestMapping(value = "/client")
 public class AuthController {
+	
+	@Autowired
+	private UserServices userServices;
 
 	@PostMapping("user")
 	public ResponseEntity<?>  login(@RequestBody User user) {	
 		try {
 			//Autentificar en base de datos
-
+			//User u=this.userServices.getUser(user);
+			//System.out.println(u.getpassword());
+			
+			
 			String token = getJWTToken(user.getUser());
 			//User user = new User();
 			//user.setUser(username);
