@@ -18,6 +18,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+
 @SpringBootApplication
 @ComponentScan(basePackages = { "edu.escuelaing.arem.secure" })
 public class SecureClientAPIApplication {
@@ -26,37 +27,39 @@ public class SecureClientAPIApplication {
 		SpringApplication.run(SecureClientAPIApplication.class, args);
 	}
 
-	@Bean
-	public RestTemplate template() throws Exception {
-		RestTemplate restTemplate = new RestTemplate();
+    /*@Bean
+    public RestTemplate getRestTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
 
-		KeyStore keyStore;
-		HttpComponentsClientHttpRequestFactory requestFactory = null;
+        KeyStore keyStore;
+        HttpComponentsClientHttpRequestFactory requestFactory = null;
 
-		try {
-			keyStore = KeyStore.getInstance("jks");
-			ClassPathResource classPathResource = new ClassPathResource("nt-gateway.jks");
-			InputStream inputStream = classPathResource.getInputStream();
-			keyStore.load(inputStream, "password".toCharArray());
+        try {
+            keyStore = KeyStore.getInstance("jks");
+            ClassPathResource classPathResource = new ClassPathResource("keystore.jks");
+            InputStream inputStream = classPathResource.getInputStream();
+            keyStore.load(inputStream, "password".toCharArray());
 
-			SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(
-					new SSLContextBuilder().loadTrustMaterial(null, new TrustSelfSignedStrategy())
-							.loadKeyMaterial(keyStore, "password".toCharArray()).build(),
-					NoopHostnameVerifier.INSTANCE);
+            SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(new SSLContextBuilder()
+                    .loadTrustMaterial(null, new TrustSelfSignedStrategy())
+                    .loadKeyMaterial(keyStore, "password".toCharArray()).build(),
+                    NoopHostnameVerifier.INSTANCE);
 
-			HttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory)
-					.setMaxConnTotal(Integer.valueOf(5)).setMaxConnPerRoute(Integer.valueOf(5)).build();
+            HttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory)
+                    .setMaxConnTotal(Integer.valueOf(5))
+                    .setMaxConnPerRoute(Integer.valueOf(5))
+                    .build();
 
-			requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-			requestFactory.setReadTimeout(Integer.valueOf(10000));
-			requestFactory.setConnectTimeout(Integer.valueOf(10000));
+            requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+            requestFactory.setReadTimeout(Integer.valueOf(10000));
+            requestFactory.setConnectTimeout(Integer.valueOf(10000));
 
-			restTemplate.setRequestFactory(requestFactory);
-		} catch (Exception exception) {
-			System.out.println("Exception Occured while creating restTemplate " + exception);
-			exception.printStackTrace();
-		}
-		return restTemplate;
-	}
+            restTemplate.setRequestFactory(requestFactory);
+        } catch (Exception exception) {
+            System.out.println("Exception Occured while creating restTemplate "+exception);
+            exception.printStackTrace();
+        }
+        return restTemplate;
+    }*/
 
 }
