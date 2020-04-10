@@ -1,6 +1,5 @@
 package edu.escuelaing.arem.secure.controllers;
 
-
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,49 +19,44 @@ import edu.escuelaing.arem.secure.services.UserServices;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-
 @RestController
 @RequestMapping(value = "/client")
 public class AuthController {
-	
+
 	@Autowired
 	private UserServices userServices;
 
 	@PostMapping("user")
-	public ResponseEntity<?>  login(@RequestBody User user) {	
+	public ResponseEntity<?> login(@RequestBody User user) {
 		try {
-			//Autentificar en base de datos
-			//User u=this.userServices.getUser(user);
-			//System.out.println(u.getpassword());
-			
-			
-			String token = getJWTToken(user.getUser());
-			//User user = new User();
-			//user.setUser(username);
-			return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
-    	} 
-    	catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+			// Autentificar en base de datos
+			User userDB = this.userServices.getUser(user);
+
+			if (userDB == null) {
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+
+			else {
+				String token = getJWTToken(user.getUser());
+				return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
+			}
+		} 
+		catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
 		}
-		
+
 	}
 
 	private String getJWTToken(String username) {
 		String secretKey = "mySecretKey";
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
-		
-		String token = Jwts
-				.builder()
-				.setId("softtekJWT")
-				.setSubject(username)
+
+		String token = Jwts.builder().setId("softtekJWT").setSubject(username)
 				.claim("authorities",
-						grantedAuthorities.stream()
-								.map(GrantedAuthority::getAuthority)
-								.collect(Collectors.toList()))
+						grantedAuthorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 600000))
-				.signWith(SignatureAlgorithm.HS512,
-						secretKey.getBytes()).compact();
+				.signWith(SignatureAlgorithm.HS512, secretKey.getBytes()).compact();
 
 		return "Bearer " + token;
 	}

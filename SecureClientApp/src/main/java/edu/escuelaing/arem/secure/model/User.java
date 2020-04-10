@@ -5,7 +5,16 @@ public class User {
 	private String user;
 	private String password;
 	private String token;
-
+	
+	public User() {
+		
+	}
+	
+	public User(String user, String password) {
+		this.user=user;
+		this.password=password;
+	}
+	
 	public String getUser() {
 		return user;
 	}
@@ -14,11 +23,11 @@ public class User {
 		this.user = user;
 	}
 
-	public String getpassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setpassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 

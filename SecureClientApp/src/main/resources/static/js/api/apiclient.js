@@ -3,7 +3,6 @@ var apiclient = (function () {
 	return {
 
 		loginUser: function (user, callback) {
-			alert(user)
 			$.ajax({
 				url: appUrl + "/client/user",
 				type: 'POST',
@@ -12,8 +11,8 @@ var apiclient = (function () {
 				success: function (respuesta) {
 					callback(respuesta);
 				},
-				error: function (res) {
-					alert("error: " + res)
+				error: function () {
+					alert("Error: " + "You are not authenticated")
 				}
 			});
 

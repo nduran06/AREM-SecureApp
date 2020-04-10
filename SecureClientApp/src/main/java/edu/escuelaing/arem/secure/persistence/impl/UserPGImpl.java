@@ -1,7 +1,5 @@
 package edu.escuelaing.arem.secure.persistence.impl;
 
-
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -32,7 +30,7 @@ public class UserPGImpl implements UserDAO{
 		public User mapRow(ResultSet resultSet, int i) throws SQLException {
 			User user = new User();
 			user.setUser(resultSet.getString("correo"));
-			user.setpassword(resultSet.getString("passwd"));
+			user.setPassword(resultSet.getString("passwd"));
 
 			return user;
 		}
@@ -54,8 +52,8 @@ public class UserPGImpl implements UserDAO{
 	 */
 	@Override
 	public User getUser(User user) {
-		final String sql = "SELECT * FROM pt_user where correo=? and passwd=?";
-		User userDB=jdbcTemplate.queryForObject(sql,new Object[]{user.getUser(), user.getpassword()}, new UserRowMapper());
+		final String sql = "SELECT * FROM pt_user where correo=(?) and passwd=(?)";
+		User userDB=jdbcTemplate.queryForObject(sql,new Object[]{user.getUser(), user.getPassword()}, new UserRowMapper());
 		return userDB;
 	}
 	
@@ -67,7 +65,7 @@ public class UserPGImpl implements UserDAO{
 	public void addUser(User user) {
         final String sql = "INSERT INTO pt_user (correo, passwd) VALUES (?, ?)";		
         final String username = user.getUser();
-        final String passwd = user.getpassword();
+        final String passwd = user.getPassword();
         
         jdbcTemplate.update(sql, new Object[]{username, passwd});
 	
