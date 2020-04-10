@@ -1,10 +1,12 @@
 var apiclient = (function () {
-	var appUrl = "http://localhost:8080";
+	var appUrl = "http://localhost:8080/client";
+	var serviceUrl="http://localhost:14790";
+
 	return {
 
 		loginUser: function (user, callback) {
 			$.ajax({
-				url: appUrl + "/client/user",
+				url: appUrl + "/user",
 				type: 'POST',
 				data: user,
 				contentType: "application/json",
@@ -23,11 +25,14 @@ var apiclient = (function () {
 				beforeSend: function (request) {
 					request.setRequestHeader("Authorization", token);
 				},
-				url: appUrl + "/client/hello",
+				url: appUrl + "/hello",
 				type: "GET",
 				success:function(res){
 					alert(res)					
-					location.replace("http://localhost:8080/client/hello");
+					location.replace(serviceUrl+"/square.html");
+				},
+				error:function(){
+					location.replace(appUrl+"/notFound");
 
 				}
 

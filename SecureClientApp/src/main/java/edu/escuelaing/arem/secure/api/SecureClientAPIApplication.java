@@ -27,39 +27,4 @@ public class SecureClientAPIApplication {
 		SpringApplication.run(SecureClientAPIApplication.class, args);
 	}
 
-    /*@Bean
-    public RestTemplate getRestTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
-
-        KeyStore keyStore;
-        HttpComponentsClientHttpRequestFactory requestFactory = null;
-
-        try {
-            keyStore = KeyStore.getInstance("jks");
-            ClassPathResource classPathResource = new ClassPathResource("keystore.jks");
-            InputStream inputStream = classPathResource.getInputStream();
-            keyStore.load(inputStream, "password".toCharArray());
-
-            SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(new SSLContextBuilder()
-                    .loadTrustMaterial(null, new TrustSelfSignedStrategy())
-                    .loadKeyMaterial(keyStore, "password".toCharArray()).build(),
-                    NoopHostnameVerifier.INSTANCE);
-
-            HttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory)
-                    .setMaxConnTotal(Integer.valueOf(5))
-                    .setMaxConnPerRoute(Integer.valueOf(5))
-                    .build();
-
-            requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-            requestFactory.setReadTimeout(Integer.valueOf(10000));
-            requestFactory.setConnectTimeout(Integer.valueOf(10000));
-
-            restTemplate.setRequestFactory(requestFactory);
-        } catch (Exception exception) {
-            System.out.println("Exception Occured while creating restTemplate "+exception);
-            exception.printStackTrace();
-        }
-        return restTemplate;
-    }*/
-
 }

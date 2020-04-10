@@ -20,8 +20,9 @@ public class SecureClientConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests().antMatchers("/login.html", "/css/**", "/fonts/**", "/images/**", "/js/**", "/vendor/**",
-						 "/client/user")
-				.permitAll().anyRequest().authenticated();
+						 "/client/user").permitAll().anyRequest().authenticated().and().
+				logout().permitAll().logoutSuccessUrl("/logout");
+		
 	}
 	
 	@Bean
