@@ -38,6 +38,10 @@ import edu.escuelaing.arem.secure.configuration.filters.JWTAuthorizationFilter;
 @EnableWebSecurity
 @Configuration
 public class SecureClientConfig extends WebSecurityConfigurerAdapter{
+	
+	/**
+	 * Configuration for token access
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -48,6 +52,10 @@ public class SecureClientConfig extends WebSecurityConfigurerAdapter{
 		
 	}
 	
+	/**
+	 * Configuration for the database connection
+	 * @return DataSource with database info
+	 */
 	@Bean
     public DataSource dataSource(){
        DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -58,7 +66,10 @@ public class SecureClientConfig extends WebSecurityConfigurerAdapter{
        return dataSource;
     }
 	
-	
+	/**
+	 * Configuration for SLL
+	 * @return RestTemplate
+	 */
 	@Bean
 	public RestTemplate getRestTemplate() {
 		RestTemplate restTemplate = new RestTemplate();

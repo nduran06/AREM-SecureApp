@@ -23,6 +23,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	private final String PREFIX = "Bearer ";
 	private final String SECRET = "mySecretKey";
 
+	/**
+	 * Filter for token configuration
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
@@ -43,13 +46,19 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		}
 	}
 
+	
+	/**
+	 * Method to validate the given token
+	 * @param request Client request
+	 * @return Token result validation
+	 */
 	private Claims validateToken(HttpServletRequest request) {
 		String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
 		return Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(jwtToken).getBody();
 	}
 
 	/**
-	 * Metodo para autenticarnos dentro del flujo de Spring
+	 * Method to authenticate us within the Spring flow
 	 * 
 	 * @param claims
 	 */
@@ -63,6 +72,12 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
 	}
 
+	/**
+	 * Method to verify if the Token exists
+	 * @param request Client request
+	 * @param res Server response
+	 * @return Token result verification
+	 */
 	private boolean existeJWTToken(HttpServletRequest request, HttpServletResponse res) {
 		String authenticationHeader = request.getHeader(HEADER);
 		if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX))

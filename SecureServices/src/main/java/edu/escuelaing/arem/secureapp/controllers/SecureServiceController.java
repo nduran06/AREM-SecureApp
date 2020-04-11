@@ -21,6 +21,11 @@ public class SecureServiceController {
 	@Autowired
 	private MathServices mathServices;
 	
+	/**
+	 * Method to get the square number of a given number
+	 * @param number Client number
+	 * @return Response entity with the result
+	 */
 	@GetMapping(value = "/square")
 	public ResponseEntity<?> getSquare(@RequestParam String number){
 		try {

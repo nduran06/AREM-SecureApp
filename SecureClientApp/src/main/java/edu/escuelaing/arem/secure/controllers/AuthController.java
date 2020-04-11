@@ -26,6 +26,12 @@ public class AuthController {
 	@Autowired
 	private UserServices userServices;
 
+	
+	/**
+	 * Method to log an user
+	 * @param user User with client info
+	 * @return ResponseEntity with user authentication result
+	 */
 	@PostMapping("user")
 	public ResponseEntity<?> login(@RequestBody User user) {
 		try {
@@ -49,6 +55,12 @@ public class AuthController {
 
 	}
 
+	
+	/**
+	 * Method to create the token for an authenticated user
+	 * @param username Username if the user
+	 * @return Token for the user
+	 */
 	private String getJWTToken(String username) {
 		String secretKey = "mySecretKey";
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
