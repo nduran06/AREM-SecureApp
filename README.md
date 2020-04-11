@@ -24,7 +24,7 @@ Para cada aplicación [SecureClientApp](https://github.com/nduran06/AREM-SecureA
 $ mvn spring-boot:run
 ```
 
-- La aplicación [SecureClientApp](https://github.com/nduran06/AREM-SecureApp/tree/master/SecureClientApp) corre por el puerto 8080 y [SecureServices](https://github.com/nduran06/AREM-SecureApp/tree/master/SecureServices) por el puerto 14790, sin embargo ambos puertos pueden ser cambiados modificando el valor de ```markdown server.port ``` en el application.properties respectivo.
+- La aplicación [SecureClientApp](https://github.com/nduran06/AREM-SecureApp/tree/master/SecureClientApp) corre por el puerto 8080 y [SecureServices](https://github.com/nduran06/AREM-SecureApp/tree/master/SecureServices) por el puerto 14790, sin embargo ambos puertos pueden ser cambiados modificando el valor de ``` server.port ``` en el application.properties respectivo.
 
 ## Autentificación con certificado SSL
 
