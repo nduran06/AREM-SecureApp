@@ -1,6 +1,6 @@
 var apiclient = (function () {
-	var appUrl = "http://localhost:8080/client";
-	var serviceUrl="http://localhost:14790";
+	var appUrl = "https://localhost:8080/client";
+	var serviceUrl = "https://localhost:14790";
 
 	return {
 
@@ -16,8 +16,7 @@ var apiclient = (function () {
 				error: function () {
 					alert("Error: " + "You are not authenticated")
 				}
-			});
-
+			})
 		},
 
 		getService: function (token) {
@@ -27,19 +26,17 @@ var apiclient = (function () {
 				},
 				url: appUrl + "/hello",
 				type: "GET",
-				success:function(res){
-					alert(res)					
-					location.replace(serviceUrl+"/square.html");
+				success: function (res) {
+					alert(res)
+					location.replace(serviceUrl + "/square.html");
 				},
-				error:function(){
-					location.replace(appUrl+"/notFound");
+				error: function () {
+					location.replace(appUrl + "/notFound");
 
 				}
 
 			});
 		}
-
-
 
 	};
 })();

@@ -1,5 +1,5 @@
 var apiclient = (function () {
-	var appUrl = "http://localhost:14790/math";
+	var appUrl = "https://localhost:14790/math";
 	return {
 		getSquare: function (number, callback) {
 			

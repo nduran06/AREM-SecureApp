@@ -30,6 +30,7 @@ public class AuthController {
 	public ResponseEntity<?> login(@RequestBody User user) {
 		try {
 			// Autentificar en base de datos
+
 			User userDB = this.userServices.getUser(user);
 
 			if (userDB == null) {
@@ -42,6 +43,7 @@ public class AuthController {
 			}
 		} 
 		catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
 		}
 
