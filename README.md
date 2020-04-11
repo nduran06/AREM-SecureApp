@@ -46,7 +46,7 @@ $ keytool -importkeystore -srckeystore keystore.jks -destkeystore  keystore.p12 
 
 - Base de datos
 
-![](https://github.com/nduran06/AREM-SecureApp/blob/master/images/8.png)
+![](https://github.com/nduran06/AREM-SecureApp/blob/master/images/7.png)
 
 - Usuario no autorizado
 
