@@ -2,7 +2,7 @@
 
 En este laboratorio se desarrolló una aplicación en la que se asegura la autenticación del usuario, la integridad de sus datos y la autorizaciónque tiene para acceder a ciertos recursos mediante el uso de tokens. Del mismo modo se utilizan certificados SSL para permitir el acceso y comunicación segura desde el browser hacias los servicios.
 
-En este archivo [file](reporte.pdf) se encuentra la descripción del prototipo.
+En este [archivo](AREM_Security.pdf) se encuentra la descripción del prototipo.
 
 ## Prerequisitos
 
@@ -20,6 +20,9 @@ En este archivo [file](reporte.pdf) se encuentra la descripción del prototipo.
 
 Para cada aplicación [SecureClientApp](https://github.com/nduran06/AREM-SecureApp/tree/master/SecureClientApp) y [SecureServices](https://github.com/nduran06/AREM-SecureApp/tree/master/SecureServices) ejecutar en la raíz del proyecto:
 
+```markdown
+$ mvn package
+```
 ```markdown
 $ mvn spring-boot:run
 ```
