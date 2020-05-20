@@ -4,6 +4,8 @@ En este laboratorio se desarrolló una aplicación en la que se asegura la auten
 
 En este [archivo](AREM_Security.pdf) se encuentra la descripción del prototipo.
 
+En este [video AWS](pruebaAWS.mp4) se encuentra el funcionamineto del prototipo utilizando los servicios AWS.
+
 ## Prerequisitos
 
 [Java 8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
